@@ -5,7 +5,8 @@ const useOneSignal = () =>
     window.OneSignal = window.OneSignal || [];
     OneSignal.push(function () {
       OneSignal.init({
-        appId: "Your App ID",
+        appId: process.env.NEXT_PUBLIC_SIGNAL_APPID,
+        safari_web_id: process.env.NEXT_PUBLIC_SIGNAL_SAFARI_,
         notifyButton: {
           enable: true,
         },
