@@ -11,22 +11,16 @@ export default function Layout({ children }) {
         <link rel='icon' href='/favicon.ico' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <meta name='theme-color' content='#000000' />
-        <meta
-          name='Winnipeg Transit WebApp'
-          content='Winnipeg Buses timetable'
-        />
+        <meta name='Winnipeg Transit WebApp' content='Winnipeg Buses timetable' />
         <title>Winnipeg Transit Webapp </title>
         <meta
           name='Description'
           content='Check the live bus timetable of the transit stops near your in Winnipeg .'
         />
-        <meta
-          name='Keywords'
-          content='Winnipeg Transit, Winnipeg Bus timetable'
-        />
+        <meta name='Keywords' content='Winnipeg Transit, Winnipeg Bus timetable' />
       </Head>
       <Header />
-      <div className='container'>{children}</div>
+      <main>{children}</main>
       <Script src='https://cdn.onesignal.com/sdks/OneSignalSDK.js'></Script>
     </div>
   );
