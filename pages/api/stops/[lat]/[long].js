@@ -10,7 +10,7 @@ export default async function handler(req, res) {
   try {
     let data = await fetch(url);
     let stops = await data.json();
-    res.status(200).send(stops);
+    res.status(200).send(stops["stops"]);
   } catch (error) {
     console.log(error);
     res.status(500).send({ message: "Error fetching stops" });
