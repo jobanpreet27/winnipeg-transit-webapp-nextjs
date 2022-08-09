@@ -1,9 +1,13 @@
-import React from "react";
+import { useEffect } from "react";
 import Header from "./Header";
 import Head from "next/head";
-import Script from "next/script";
+import runOneSignal from "./oneSignal";
 
 export default function Layout({ children }) {
+  useEffect(() => {
+    runOneSignal();
+  }, []);
+
   return (
     <div>
       <Head>
@@ -21,7 +25,6 @@ export default function Layout({ children }) {
       </Head>
       <Header />
       <main>{children}</main>
-      <Script src='https://cdn.onesignal.com/sdks/OneSignalSDK.js'></Script>
     </div>
   );
 }

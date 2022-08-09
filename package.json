@@ -9,11 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "next": "12.2.3",
     "node-fetch-cache": "^3.0.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-icons": "^4.4.0"
+    "react-icons": "^4.4.0",
+    "react-onesignal": "^2.0.4"
   },
   "devDependencies": {
     "eslint": "8.21.0",
