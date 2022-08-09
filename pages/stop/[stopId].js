@@ -1,15 +1,25 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import OneSignal from "react-onesignal";
 
-export default function id() {
+export default function stopId() {
   const router = useRouter();
-  const { id } = router.query;
+  const { stopId } = router.query;
   const [schedule, setSchedule] = useState([]);
 
   const fetchSchedule = async () => {
-    const data = await fetch("/api/schedule/" + id);
+    const data = await fetch("/api/schedule/" + stopId);
     const list = await data.json();
     setSchedule(list);
+  };
+
+  const setAlert = async (busId) => {
+    const userId = await OneSignal.getUserId();
+    fetch("/api/alert", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId, busId, stopId }),
+    });
   };
 
   const renderSchedule = (
@@ -25,6 +35,7 @@ export default function id() {
                 hour12: true,
               })}
             </div>
+            <button onClick={() => setAlert(bus.key)}>Set Alert</button>
           </div>
         );
       })}
