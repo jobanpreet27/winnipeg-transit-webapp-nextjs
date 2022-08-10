@@ -1,5 +1,6 @@
 const axios = require("axios").default;
-
+const { Worker } = require("worker_threads");
+const path = require("path");
 export default function handler(req, res) {
   if (req.method !== "POST") return;
 
@@ -29,6 +30,10 @@ export default function handler(req, res) {
     .catch(function (error) {
       console.error(error);
     });
+
+  const worker = new Worker("./components/alertWorker.js", {
+    workerData: { num: 10, message: "Hello World" },
+  });
 
   res.status(201).send({ message: "Alert Created" });
 }
