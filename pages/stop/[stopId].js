@@ -1,6 +1,13 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import OneSignal from "react-onesignal";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import Container from "@mui/material/Container";
+import IconButton from "@mui/material/IconButton";
+import AlarmIcon from "@mui/icons-material/Alarm";
+import Avatar from "@mui/material/Avatar";
+import { indigo } from "@mui/material/colors";
 
 export default function stopId() {
   const router = useRouter();
@@ -26,17 +33,25 @@ export default function stopId() {
     <div>
       {schedule.map((bus) => {
         return (
-          <div key={bus.key}>
-            <h2>{bus.variant.name}</h2>
-            <div>
-              {new Date(bus.times.departure.estimated).toLocaleString("en-US", {
-                hour: "numeric",
-                minute: "numeric",
-                hour12: true,
-              })}
-            </div>
-            <button onClick={() => setAlert(bus.key, bus.route)}>Set Alert</button>
-          </div>
+          <Card key={bus.key} sx={{ marginBottom: 1 }} variant='outlined'>
+            <CardHeader
+              avatar={<Avatar sx={{ bgcolor: "primary.main" }}>{bus.route}</Avatar>}
+              title={bus.variant.name}
+              subheader={new Date(bus.times.departure.estimated).toLocaleString(
+                "en-US",
+                {
+                  hour: "numeric",
+                  minute: "numeric",
+                  hour12: true,
+                }
+              )}
+              action={
+                <IconButton>
+                  <AlarmIcon onClick={() => setAlert(bus.key, bus.route)} />
+                </IconButton>
+              }
+            />
+          </Card>
         );
       })}
     </div>
@@ -48,5 +63,5 @@ export default function stopId() {
     }
   }, [router.isReady]);
 
-  return <div>{renderSchedule}</div>;
+  return <Container maxWidth='sm'>{renderSchedule}</Container>;
 }
