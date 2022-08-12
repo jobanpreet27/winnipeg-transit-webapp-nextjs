@@ -31,6 +31,7 @@ const getBusTime = async () => {
 };
 
 const load = async function () {
+  timeLeft = await getBusTime();
   while (timeLeft > 5) {
     console.log("loop ran");
     await timer();
