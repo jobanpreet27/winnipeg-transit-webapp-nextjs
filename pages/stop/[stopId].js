@@ -13,12 +13,12 @@ export default function stopId() {
     setSchedule(list);
   };
 
-  const setAlert = async (busId) => {
+  const setAlert = async (busKey, routeKey) => {
     const userId = await OneSignal.getUserId();
     fetch("/api/alert", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ userId, busId, stopId }),
+      body: JSON.stringify({ userId, busKey, stopId, routeKey }),
     });
   };
 
@@ -35,7 +35,7 @@ export default function stopId() {
                 hour12: true,
               })}
             </div>
-            <button onClick={() => setAlert(bus.key)}>Set Alert</button>
+            <button onClick={() => setAlert(bus.key, bus.route)}>Set Alert</button>
           </div>
         );
       })}
