@@ -1,5 +1,5 @@
 const { workerData } = require("worker_threads");
-const sendNotification = require("./sendNotification").sendNotification;
+const sendNotification = require("../components/sendNotification").sendNotification;
 const axios = require("axios");
 const moment = require("moment");
 
