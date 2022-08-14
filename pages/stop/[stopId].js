@@ -7,7 +7,7 @@ import Container from "@mui/material/Container";
 import IconButton from "@mui/material/IconButton";
 import AlarmIcon from "@mui/icons-material/Alarm";
 import Avatar from "@mui/material/Avatar";
-import { indigo } from "@mui/material/colors";
+import Alert from "@mui/material/Alert";
 
 export default function stopId() {
   const router = useRouter();
@@ -22,11 +22,16 @@ export default function stopId() {
 
   const setAlert = async (busKey, routeKey) => {
     const userId = await OneSignal.getUserId();
-    fetch("/api/alert", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ userId, busKey, stopId, routeKey }),
-    });
+    try {
+      fetch("/api/alert", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId, busKey, stopId, routeKey }),
+      });
+      alert("Your Alert Added");
+    } catch (e) {
+      alert("Something went wrong");
+    }
   };
 
   const renderSchedule = (

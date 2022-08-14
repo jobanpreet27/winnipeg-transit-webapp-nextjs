@@ -4,8 +4,6 @@ import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardActionArea from "@mui/material/CardActionArea";
 import Container from "@mui/material/Container";
-import IconButton from "@mui/material/IconButton";
-import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 
 export default function Home() {
   const [userPosition, setUserPosition] = useState(null);
