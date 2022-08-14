@@ -10,7 +10,15 @@ export default async function handler(req, res) {
   const sortSchedule = (array) => {
     array.forEach((routes) => {
       routes["scheduled-stops"].forEach((stop) => {
-        schedule.push({ ...stop, route: routes.route.key });
+        let stopInfo = { ...stop, route: routes.route.key };
+        stopInfo.departureTime = new Date(
+          stop.times.departure.estimated
+        ).toLocaleString("en-US", {
+          hour: "numeric",
+          minute: "numeric",
+          hour12: true,
+        });
+        schedule.push(stopInfo);
       });
     });
     schedule.sort((a, b) => {

@@ -42,17 +42,10 @@ export default function stopId() {
             <CardHeader
               avatar={<Avatar sx={{ bgcolor: "primary.main" }}>{bus.route}</Avatar>}
               title={bus.variant.name}
-              subheader={new Date(bus.times.departure.estimated).toLocaleString(
-                "en-US",
-                {
-                  hour: "numeric",
-                  minute: "numeric",
-                  hour12: true,
-                }
-              )}
+              subheader={bus.departureTime}
               action={
-                <IconButton>
-                  <AlarmIcon onClick={() => setAlert(bus.key, bus.route)} />
+                <IconButton onClick={() => setAlert(bus.key, bus.route)}>
+                  <AlarmIcon />
                 </IconButton>
               }
             />
