@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Header from "./Header";
 import Head from "next/head";
 import runOneSignal from "./oneSignal";
+import Box from "@mui/material/Box";
 
 export default function Layout({ children }) {
   useEffect(() => {
@@ -24,7 +25,9 @@ export default function Layout({ children }) {
         <meta name='Keywords' content='Winnipeg Transit, Winnipeg Bus timetable' />
       </Head>
       <Header />
-      <main>{children}</main>
+      <Box component='main' sx={{ my: 10 }}>
+        {children}
+      </Box>
     </div>
   );
 }
