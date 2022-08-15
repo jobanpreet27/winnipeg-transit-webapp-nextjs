@@ -10,6 +10,10 @@ import Avatar from "@mui/material/Avatar";
 export default function Home() {
   const [userPosition, setUserPosition] = useState(null);
   const [stops, setStops] = useState([]);
+  const defaultCoords = {
+    latitude: "49.852263",
+    longitude: "-97.112128",
+  };
 
   const fetchStops = async (position) => {
     let data = await fetch(`/api/stops/${position.latitude}/${position.longitude}`);
@@ -49,9 +53,15 @@ export default function Home() {
   );
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) =>
-      fetchStops(position.coords)
-    );
+    const getStops = async () => {
+      const result = await navigator.permissions.query({ name: "geolocation" });
+      if (result.state !== "granted") fetchStops(defaultCoords);
+      if (navigator.geolocation)
+        navigator.geolocation.getCurrentPosition((position) =>
+          fetchStops(position.coords)
+        );
+    };
+    getStops();
   }, []);
 
   return <Container maxWidth='sm'>{renderStops}</Container>;
