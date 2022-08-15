@@ -9,7 +9,7 @@ import AlarmIcon from "@mui/icons-material/Alarm";
 import Avatar from "@mui/material/Avatar";
 import Alert from "@mui/material/Alert";
 
-export default function stopId() {
+export default function StopId() {
   const router = useRouter();
   const { stopId } = router.query;
   const [schedule, setSchedule] = useState([]);
@@ -59,7 +59,7 @@ export default function stopId() {
     if (router.isReady) {
       fetchSchedule();
     }
-  }, [router.isReady]);
+  }, [router.isReady, fetchSchedule]);
 
   return <Container maxWidth='sm'>{renderSchedule}</Container>;
 }
