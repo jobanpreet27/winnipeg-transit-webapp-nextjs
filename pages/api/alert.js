@@ -1,14 +1,18 @@
 import { Worker } from "worker_threads";
 import alertsController from "../../controllers/alertsController";
+import path from "path";
 
 export default function handler(req, res) {
   if (req.method !== "POST") return;
   const { userId, busKey, stopId, routeKey } = req.body;
   try {
     alertsController.addAlert(userId);
-    const worker = new Worker("./utils/alertWorker.js", {
-      workerData: { userId, busKey, stopId, routeKey },
-    });
+    const worker = new Worker(
+      path.join(__dirname, "..", "..", "..", "..", "utils", "alertWorker.js"),
+      {
+        workerData: { userId, busKey, stopId, routeKey },
+      }
+    );
     worker.on("exit", () => {
       console.log("worker done");
       alertsController.removeAlert(userId);
