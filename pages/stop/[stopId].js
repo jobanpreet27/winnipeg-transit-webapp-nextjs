@@ -59,7 +59,7 @@ export default function StopId() {
     if (router.isReady) {
       fetchSchedule();
     }
-  }, [router.isReady, fetchSchedule]);
+  }, [router.isReady]);
 
   return <Container maxWidth='sm'>{renderSchedule}</Container>;
 }
