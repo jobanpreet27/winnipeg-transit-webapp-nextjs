@@ -8,7 +8,7 @@ export default function handler(req, res) {
   try {
     alertsController.addAlert(userId);
     const worker = new Worker(
-      path.join(__dirname, "..", "..", "..", "..", "utils", "alertWorker.js"),
+      path.join(process.cwd(), "utils", "alertWorker.js"),
       {
         workerData: { userId, busKey, stopId, routeKey },
       }
