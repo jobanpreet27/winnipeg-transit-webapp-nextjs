@@ -35,6 +35,7 @@ export default function Home() {
                       bgcolor: route["badge-style"]["background-color"],
                     }}
                     variant='square'
+                    key={route.key}
                   >
                     {route.key}
                   </Avatar>
