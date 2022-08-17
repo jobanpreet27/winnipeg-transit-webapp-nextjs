@@ -7,12 +7,9 @@ export default function handler(req, res) {
   const { userId, busKey, stopId, routeKey } = req.body;
   try {
     alertsController.addAlert(userId);
-    const worker = new Worker(
-      path.join(process.cwd(), "utils", "alertWorker.js"),
-      {
-        workerData: { userId, busKey, stopId, routeKey },
-      }
-    );
+    const worker = new Worker(path.join(process.cwd(), "utils", "alertWorker.js"), {
+      workerData: { userId, busKey, stopId, routeKey },
+    });
     worker.on("exit", () => {
       console.log("worker done");
       alertsController.removeAlert(userId);

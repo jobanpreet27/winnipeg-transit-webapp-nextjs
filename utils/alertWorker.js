@@ -1,5 +1,4 @@
 const { workerData } = require("worker_threads");
-const sendNotification = require("../components/sendNotification").sendNotification;
 const axios = require("axios");
 const moment = require("moment");
 
@@ -11,6 +10,34 @@ url.searchParams.append("api-key", process.env.WT_API_KEY);
 let timeLeft = 100; // 100 minutes
 
 const timer = () => new Promise((res) => setTimeout(res, 30000));
+
+const sendNotification = function (userId, content) {
+  const options = {
+    method: "POST",
+    url: "https://onesignal.com/api/v1/notifications",
+    headers: {
+      Accept: "application/json",
+      Authorization: "Basic " + process.env.SIGNAL_REST_API_KEY,
+      "Content-Type": "application/json",
+    },
+    data: {
+      included_segments: ["include_player_ids"],
+      contents: { en: content },
+      include_player_ids: [userId],
+      name: "alert",
+      app_id: process.env.NEXT_PUBLIC_SIGNAL_APPID,
+    },
+  };
+
+  axios
+    .request(options)
+    .then(function (response) {
+      console.log(response.data);
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+};
 
 const getBusTime = async () => {
   let time = 0;
