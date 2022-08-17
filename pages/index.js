@@ -54,12 +54,17 @@ export default function Home() {
 
   useEffect(() => {
     const getStops = async () => {
-      const result = await navigator.permissions.query({ name: "geolocation" });
-      if (result.state !== "granted") fetchStops(defaultCoords);
+      if (navigator.permissions) {
+        const result = await navigator.permissions.query({ name: "geolocation" });
+        if (result.state !== "granted") fetchStops(defaultCoords);
+      }
       if (navigator.geolocation)
         navigator.geolocation.getCurrentPosition((position) =>
           fetchStops(position.coords)
         );
+      else {
+        fetchStops(defaultCoords);
+      }
     };
     getStops();
   }, []);
