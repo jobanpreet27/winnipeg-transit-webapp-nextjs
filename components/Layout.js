@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import Header from "./Header";
 import Head from "next/head";
-import runOneSignal from "./oneSignal";
+import runOneSignal from "../utils/runOneSignal";
 import Box from "@mui/material/Box";
 
 export default function Layout({ children }) {
