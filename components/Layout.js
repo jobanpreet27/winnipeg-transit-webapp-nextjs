@@ -3,6 +3,10 @@ import Header from "./Header";
 import Head from "next/head";
 import runOneSignal from "../utils/runOneSignal";
 import Box from "@mui/material/Box";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Container from "@mui/material/Container";
+import Toolbar from "@mui/material/Toolbar";
 
 export default function Layout({ children }) {
   useEffect(() => {
@@ -25,8 +29,16 @@ export default function Layout({ children }) {
         <meta name='Keywords' content='Winnipeg Transit, Winnipeg Bus timetable' />
       </Head>
       <Header />
-      <Box component='main' sx={{ my: 10 }}>
-        {children}
+      <Box component='main' sx={{ height: "100vh", overflow: "auto" }}>
+        <Toolbar />
+        <ToastContainer
+          style={{
+            position: "relative",
+          }}
+        />
+        <Container maxWidth='lg' sx={{ mt: 1 }}>
+          {children}
+        </Container>
       </Box>
     </div>
   );

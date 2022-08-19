@@ -7,7 +7,7 @@ import Container from "@mui/material/Container";
 import IconButton from "@mui/material/IconButton";
 import AlarmIcon from "@mui/icons-material/Alarm";
 import Avatar from "@mui/material/Avatar";
-import Alert from "@mui/material/Alert";
+import { toast, Toast } from "react-toastify";
 
 export default function StopId() {
   const router = useRouter();
@@ -28,9 +28,11 @@ export default function StopId() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, busKey, stopId, routeKey }),
       });
-      alert("Your Alert Added");
+      toast.success(
+        "Notification Added! You will be notified when your bus is 5 mins away. "
+      );
     } catch (e) {
-      alert("Something went wrong");
+      toast.error("Something went wrong! Try again later.");
     }
   };
 
