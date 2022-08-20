@@ -7,7 +7,7 @@ import Container from "@mui/material/Container";
 import IconButton from "@mui/material/IconButton";
 import AlarmIcon from "@mui/icons-material/Alarm";
 import Avatar from "@mui/material/Avatar";
-import { toast, Toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 export default function StopId() {
   const router = useRouter();
@@ -63,5 +63,9 @@ export default function StopId() {
     }
   }, [router.isReady]);
 
-  return <Container maxWidth='sm'>{renderSchedule}</Container>;
+  return (
+    <Container maxWidth='md' sx={{ p: 0 }}>
+      {renderSchedule}
+    </Container>
+  );
 }

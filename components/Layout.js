@@ -29,16 +29,17 @@ export default function Layout({ children }) {
         <meta name='Keywords' content='Winnipeg Transit, Winnipeg Bus timetable' />
       </Head>
       <Header />
-      <Box component='main' sx={{ height: "100vh", overflow: "auto" }}>
+      <Box component='main'>
         <Toolbar />
         <ToastContainer
+          position='top-center'
           style={{
             position: "relative",
+            width: "100%",
+            padding: "1px",
           }}
         />
-        <Container maxWidth='lg' sx={{ mt: 1 }}>
-          {children}
-        </Container>
+        <Container sx={{ mt: 1, p: 0 }}>{children}</Container>
       </Box>
     </div>
   );
