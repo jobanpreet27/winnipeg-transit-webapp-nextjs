@@ -16,6 +16,7 @@ export default function Stop(props) {
             title={stop.name}
             subheader={stop.distances.direct}
             action={<SaveStopIcon stop={stop} />}
+            titleTypographyProps={{ variant: "subtitle1" }}
           />
           <CardContent sx={{ pt: 0, "&:last-child": { pb: 0 } }}>
             {stop.routes.map((route) => (

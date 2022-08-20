@@ -64,7 +64,7 @@ export default function StopId() {
   }, [router.isReady]);
 
   return (
-    <Container maxWidth='md' sx={{ p: 0 }}>
+    <Container maxWidth='sm' sx={{ p: 0 }}>
       {renderSchedule}
     </Container>
   );

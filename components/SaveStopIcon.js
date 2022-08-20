@@ -29,8 +29,12 @@ export default function SaveStopIcon(props) {
     setIsSaved(!isSaved);
   };
   return (
-    <IconButton onClick={(e) => handleClick(e)}>
-      {isSaved ? <BookmarkRemoveIcon /> : <BookmarkBorderIcon />}
-    </IconButton>
+    <>
+      {isSaved ? (
+        <BookmarkRemoveIcon onClick={(e) => handleClick(e)} />
+      ) : (
+        <BookmarkBorderIcon onClick={(e) => handleClick(e)} />
+      )}
+    </>
   );
 }
