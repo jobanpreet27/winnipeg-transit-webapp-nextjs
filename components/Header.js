@@ -14,7 +14,7 @@ export default function Header() {
         </Typography>
         <Box sx={{ display: { sm: "block" } }}>
           <Link href='/'>
-            <Button sx={{ color: "#fff" }}>Home</Button>
+            <Button sx={{ color: "#fff" }}>Nearby Stops</Button>
           </Link>
           <Link href='/saved'>
             <Button sx={{ color: "#fff" }}>Saved</Button>

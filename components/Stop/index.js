@@ -4,10 +4,9 @@ import CardHeader from "@mui/material/CardHeader";
 import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
 import Avatar from "@mui/material/Avatar";
-import SaveStopIcon from "../components/SaveStopIcon";
+import SaveStopIcon from "./SaveStopIcon";
 
-export default function Stop(props) {
-  const { stop } = props;
+export default function Stop({ stop }) {
   return (
     <Link href={"/stop/" + stop.key}>
       <Card sx={{ marginBottom: 1 }} variant='outlined'>
