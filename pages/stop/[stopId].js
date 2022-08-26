@@ -24,7 +24,7 @@ export default function StopId() {
         />
       );
     } else {
-      return schedule.map((bus) => <Bus bus={bus} stopId={stopId} />);
+      return schedule.map((bus) => <Bus key={bus.key} bus={bus} stopId={stopId} />);
     }
   };
 
