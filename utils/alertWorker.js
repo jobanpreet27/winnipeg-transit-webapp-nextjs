@@ -65,6 +65,6 @@ const load = async function () {
     timeLeft = await getBusTime();
     console.log(timeLeft);
   }
-  sendNotification(userId, `${routeKey}  will on the stop in ${timeLeft} mins`);
+  sendNotification(userId, `${routeKey}  will be on the stop in ${timeLeft} mins`);
 };
 load();

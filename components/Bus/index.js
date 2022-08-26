@@ -9,6 +9,11 @@ import { toast } from "react-toastify";
 export default function Bus({ bus, stopId }) {
   const setAlert = async (busKey, routeKey) => {
     const userId = await OneSignal.getUserId();
+    const isNotificationsEnabled = await OneSignal.isPushNotificationsEnabled();
+    if (!isNotificationsEnabled) {
+      toast.error("Notifications are not enabled!! Click on bell icon below");
+      return;
+    }
     try {
       fetch("/api/alert", {
         method: "POST",
