@@ -5,11 +5,20 @@ import AlarmIcon from "@mui/icons-material/Alarm";
 import Avatar from "@mui/material/Avatar";
 import OneSignal from "react-onesignal";
 import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
 
 export default function Bus({ bus, stopId }) {
+  const [isPushNotificationsSupported, setIsPushNotificationsSupported] =
+    useState(false);
+
   const setAlert = async (busKey, routeKey) => {
+    if (!isPushNotificationsSupported) {
+      toast.error("Notifications are not supported on this device!!");
+      return;
+    }
     const userId = await OneSignal.getUserId();
     const isNotificationsEnabled = await OneSignal.isPushNotificationsEnabled();
+
     if (!isNotificationsEnabled) {
       toast.error("Notifications are not enabled!! Click on bell icon below");
       return;
@@ -28,6 +37,12 @@ export default function Bus({ bus, stopId }) {
       toast.error("Something went wrong! Try again later.");
     }
   };
+
+  useEffect(() => {
+    if (window.OneSignal.isPushNotificationsSupported()) {
+      setIsPushNotificationsSupported(true);
+    }
+  }, []);
 
   return (
     <Card sx={{ marginBottom: 1 }} variant='outlined'>
